@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="crudapp.CrudAppTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-19T19:45:56" hostname="DELL-KASIA" time="5.458">
+  <properties/>
+  <testcase name="shouldCreateTrelloCard()" classname="crudapp.CrudAppTestSuite" time="5.458"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Starting ChromeDriver 99.0.4844.35 (f60a827ddb87f1c403e07713751a5551d5856ac0-refs/branch-heads/4844@{#579}) on port 64929
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+[1650397558.139][WARNING]: This version of ChromeDriver has not been tested with Chrome version 100.
+kwi 19, 2022 9:45:58 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+kwi 19, 2022 9:45:58 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 100, so returning the closest version found: 99
+kwi 19, 2022 9:45:58 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Found CDP implementation for version 100 of 99
+]]></system-err>
+</testsuite>
