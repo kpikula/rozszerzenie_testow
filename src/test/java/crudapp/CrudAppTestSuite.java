@@ -70,6 +70,7 @@ public class CrudAppTestSuite {
                     buttonCreateCard.click();
                 });
         Thread.sleep(5000);
+        driver.switchTo().alert().accept();
     }
 
     private boolean checkTaskExistsInTrello(String taskName) throws InterruptedException {
@@ -90,7 +91,7 @@ public class CrudAppTestSuite {
 
         Thread.sleep(4000);
 
-        driverTrello.findElements(By.xpath("//a[@class=\"application-kodilla\"]")).stream()
+        driverTrello.findElements(By.xpath("//a[@class=\"board-tile\"]")).stream()
                 .filter(aHref -> aHref.findElements(By.xpath(".//div[@title=\"Application Kodilla\"]")).size() > 0)
                 .forEach(WebElement::click);
 
@@ -104,14 +105,33 @@ public class CrudAppTestSuite {
         return result;
     }
 
+    private void deleteTestTask(String taskName) throws InterruptedException {
+        driver.navigate().refresh();
+
+        while(!driver.findElement(By.xpath("//select[1]")).isDisplayed());
+
+        driver.findElements(
+                        By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(anyForm ->
+                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
+                                .getText().equals(taskName))
+                .forEach(theForm -> {
+                    WebElement selectElement = theForm.findElement(By.xpath(".//select[1]"));
+                    Select select = new Select(selectElement);
+                    select.selectByIndex(1);
+
+                    WebElement buttonDeleteCard =
+                            theForm.findElement(By.xpath(".//button[contains(@class, \"Delete\")]"));
+                    buttonDeleteCard.click();
+                });
+        Thread.sleep(5000);
+    }
+
     @Test
     public void shouldCreateTrelloCard() throws InterruptedException {
-        final String XPATH_DELETE_BUTTON = "//div[contains(@class, \"task-container\")]/form[5]/div/fieldset[1]/button[4]";
         String taskName = createCrudAppTestTask();
         sendTestTaskToTrello(taskName);
         assertTrue(checkTaskExistsInTrello(taskName));
-
-        WebElement deleteButton = driver.findElement(By.xpath(XPATH_DELETE_BUTTON));
-        deleteButton.click();
+        deleteTestTask(taskName);
     }
 }
